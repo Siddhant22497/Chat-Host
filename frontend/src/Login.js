@@ -23,7 +23,7 @@ function Login() {
       ele.textContent = "";
     }
   
-    const response = await fetch('http://localhost:5200/tologin', {
+    const response = await fetch('https://chat-host.onrender.com/tologin', {
       method: 'POST',
       body: JSON.stringify({ "username": username, "password": password }),
       headers: {
