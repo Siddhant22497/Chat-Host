@@ -44,7 +44,7 @@ app.use('/togetresult', togetresult);
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://chat-host.onrender.com/",
+        origin: "https://chat-host.onrender.com",
         methods: ["GET", "POST"],
     },
     pingTimeout: 120000,
