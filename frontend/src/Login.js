@@ -31,7 +31,6 @@ function Login() {
       }
     })
     const data = await response.json();
-    console.log("Working");
     if (data.length == 1) {
       let ele = document.getElementById('result');
       ele.textContent = "Login successful."

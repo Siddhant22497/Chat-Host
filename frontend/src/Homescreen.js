@@ -13,7 +13,7 @@ export default function Homescreen(receiver) {
 
   const [isgroupchat, setIsgroupchat] = useState(false);
 
-  const username = location.state?.username || "Guest";
+  var username = location.state?.username || "";
 
   const [searchusersgroup, setSearchUsersgroup] = useState([]);
 
@@ -28,6 +28,11 @@ export default function Homescreen(receiver) {
 
 
   const senderGroupName = useRef("");
+
+  const emptyUsername = () => {
+    username = "";
+  }
+
 
 
   const [currsendmessage, setCurrsendmessage] = useState({});
@@ -131,7 +136,7 @@ export default function Homescreen(receiver) {
       const receiver = data.receiver;
       const textToSend = data.textToSend;
 
-      console.log("Now this is working");
+
       fetchintialusergroup();
 
       if (currsendmessage == "") {
@@ -338,7 +343,7 @@ export default function Homescreen(receiver) {
       messageWrapper.className = "flex flex-col h-auto";
 
       const receiverText = document.createElement("p");
-      receiverText.className = `text-[1.1vw] font-semibold mb-1 ${username === messageReceiver?"text-white":"text-black"} break-words`;
+      receiverText.className = `text-[1.1vw] font-semibold mb-1 ${username === messageReceiver ? "text-white" : "text-black"} break-words`;
       receiverText.innerText = `From: ${messageReceiver}`;
 
       const messageText = document.createElement("p");
@@ -970,10 +975,32 @@ export default function Homescreen(receiver) {
   }
 
 
-
   return (
     <>
+
+
+
+
       <div className='class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
+        {username === "" && (
+          <>
+          
+            <div className="modal-background fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-70" />
+
+       
+            <div
+              className='fixed top-10 left-[25vw] h-[80vh] w-[50vw] z-20 rounded-2xl flex flex-col justify-center items-center'
+              style={{
+                backgroundColor: "#8EC5FC",
+                backgroundImage: "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)"
+              }}
+            >
+
+              <p className="text-[2vw] text-center">Log in first.</p>
+            </div>
+          </>
+        )}
+
         {addgroupModal && (
           <div className="modal-background fixed top-0 left-0 w-full h-full   z-10 bg-black bg-opacity-50" />
         )}
@@ -995,7 +1022,7 @@ export default function Homescreen(receiver) {
                       user.username !== username && (
                         <li
                           key={user._id}
-                          className="flex items-center justify-between border-4 rounded-xl hover:scale-105 cursor-pointer border-gray-700 mt-[2vh] ml-[0.5vw] h-[10vh] w-[21vw] text-[2vw] p-2"
+                          className="flex items-center justify-between border-4 rounded-xl hover:scale-105 cursor-pointer border-gray-700 mt-[2vh] ml-[0.7vw] h-[10vh] w-[21vw] text-[2vw] p-2"
                         >
                           <span>{user.username}</span>
                           <button
@@ -1021,7 +1048,7 @@ export default function Homescreen(receiver) {
                   {usersingroups.map((user) => (
                     <li
                       key={user._id}
-                      className="flex items-center justify-between border-4 rounded-xl hover:scale-105 cursor-pointer border-black ml-[0.5vw] mt-[2vh] h-[10vh] w-[21vw] text-[2vw] p-2"
+                      className="flex items-center justify-between border-4 rounded-xl hover:scale-105 cursor-pointer border-black ml-[0.7vw] mt-[2vh] h-[10vh] w-[21vw] text-[2vw] p-2"
                     >
                       <span>{user.username}</span>
                       <button
@@ -1049,7 +1076,7 @@ export default function Homescreen(receiver) {
           <div className="bg-gray-400 flex items-center justify-center" style={{ width: '5vw', height: '100vh' }}>
 
 
-            <Link to="/" className='inline mt-[85vh]'><button className='bg-white rounded-xl h-[9vh] w-[4.8vw] border-4 text-[1.1vw] border-black hover:bg-gray-500 hover:scale-105'>Log Out</button></Link>
+            <Link to="/" className='inline mt-[85vh]'><button className='bg-white rounded-xl h-[9vh] w-[4.8vw] border-4 text-[1.1vw] border-black hover:bg-gray-500 hover:scale-105' onClick={(e) => emptyUsername()}>Log Out</button></Link>
 
           </div>
           <div style={{ width: '40vw' }}>

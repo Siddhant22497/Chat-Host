@@ -5,6 +5,9 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const user_info=require('./user_info');
+const path=require('path');
+
+const _dirname=path.resolve();
 
 
 const tologin = require('./login.js');
@@ -67,8 +70,14 @@ io.on("connection", (socket) => {
 
 
 
+app.use(express.static(path.join(_dirname,"/frontend/build")));
+app.get("*",(req,resp)=>{
+    resp.sendFile(path.resolve(_dirname,"frontend","build","index.html"));
+});
 
-const PORT = process.env.PORT || 5200;
+
+const PORT = 5200;
+
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
