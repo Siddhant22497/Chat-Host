@@ -28,7 +28,7 @@ function SignUp() {
       const result = document.getElementById("result")
       result.textContent = ""
     }
-    const response1 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signup`, {
+    const response1 = await fetch(`https://chat-host-mern.onrender.com/tosignup/signup`, {
       method: 'POST',
       body: JSON.stringify({ "username": username }),
       headers: {
@@ -43,7 +43,7 @@ function SignUp() {
       result.textContent = "Username already exists. Try different!";
       return;
     }
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/checkgroupexist`, {
+    const res = await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/checkgroupexist`, {
       method: 'POST',
       body: JSON.stringify({
         "groupname": username
@@ -77,7 +77,7 @@ function SignUp() {
     const result = document.getElementById("result");
     result.className = "text-red-600 ml-24";
     result.textContent = "Details saved successfully.";
-    await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signupnow`, {
+    await fetch(`https://chat-host-mern.onrender.com/tosignup/signupnow`, {
       method: 'POST',
       body: JSON.stringify({ "username": username, "password": password }),
       headers: {

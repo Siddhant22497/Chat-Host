@@ -24,7 +24,7 @@ function Login() {
       ele.textContent = "";
     }
 
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tologin`, {
+    const response = await fetch(`https://chat-host-mern.onrender.com/tologin`, {
       method: 'POST',
       body: JSON.stringify({ "username": username, "password": password }),
       headers: {

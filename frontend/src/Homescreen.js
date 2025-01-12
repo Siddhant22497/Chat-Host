@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const { io } = require("socket.io-client");
 
 
-const socket = io.connect(`${process.env.REACT_APP_BACKEND_PORT}`)
+const socket = io.connect(`https://chat-host-mern.onrender.com`)
 export default function Homescreen(receiver) {
   const location = useLocation();
 
@@ -101,7 +101,7 @@ export default function Homescreen(receiver) {
     senderGroupName.current = "";
     setusersgroupname("");
     if (value.length > 0) {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/togetresult/tofetch`, {
+      const response = await fetch(`https://chat-host-mern.onrender.com/togetresult/tofetch`, {
         method: 'POST',
         body: JSON.stringify({ "username": value }),
         headers: {
@@ -279,7 +279,7 @@ export default function Homescreen(receiver) {
 
   }
   const loadgroupmess = async (receiver, groupname) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/loadgroupmessage`, {
+    const response = await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/loadgroupmessage`, {
       method: 'POST',
       body: JSON.stringify({ "groupname": groupname }),
       headers: {
@@ -365,7 +365,7 @@ export default function Homescreen(receiver) {
 
   const loadindimess = async (receiver, sender) => {
 
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/tofetchindichat`, {
+    const response = await fetch(`https://chat-host-mern.onrender.com/tofetchindichat/tofetchindichat`, {
       method: 'POST',
       body: JSON.stringify({ "receiver": receiver, "sender": sender }),
       headers: {
@@ -511,7 +511,7 @@ export default function Homescreen(receiver) {
     const currentTime = `${hours}:${minutes}:${seconds}`;
 
     setmessagetext("Type message here");
-    await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupmessage`, {
+    await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/savegroupmessage`, {
       method: 'POST',
       body: JSON.stringify({
         "receiver": receiver,
@@ -561,7 +561,7 @@ export default function Homescreen(receiver) {
         const currentTime = `${hours}:${minutes}:${seconds}`;
 
         setmessagetext("Type message here");
-        await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
+        await fetch(`https://chat-host-mern.onrender.com/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
             "receiver": receiver,
@@ -602,7 +602,7 @@ export default function Homescreen(receiver) {
         const currentTime = `${hours}:${minutes}:${seconds}`;
 
         setmessagetext("Type message here");
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
+        const response = await fetch(`https://chat-host-mern.onrender.com/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
             "receiver": receiver,
@@ -617,7 +617,7 @@ export default function Homescreen(receiver) {
           }
         })
         await response.json();
-        const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
+        const response2 = await fetch(`https://chat-host-mern.onrender.com/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
             "receiver": sender,
@@ -664,7 +664,7 @@ export default function Homescreen(receiver) {
       display_res.textContent = "";
     }
 
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signup`, {
+    const response = await fetch(`https://chat-host-mern.onrender.com/tosignup/signup`, {
       method: 'POST',
       body: JSON.stringify({ "username": val }),
       headers: {
@@ -686,7 +686,7 @@ export default function Homescreen(receiver) {
 
 
 
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/checkgroupexist`, {
+    const res = await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/checkgroupexist`, {
       method: 'POST',
       body: JSON.stringify({
         "groupname": val
@@ -720,7 +720,7 @@ export default function Homescreen(receiver) {
 
     const currentDate = `${day}/${month}/${year}`;
     const currentTime = `${hours}:${minutes}:${seconds}`;
-    await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupinfo`, {
+    await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/savegroupinfo`, {
       method: 'POST',
       body: JSON.stringify({
         "receiver": username,
@@ -748,7 +748,7 @@ export default function Homescreen(receiver) {
     const sender = e.target.value;
 
     if (sender.length > 0) {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/togetresult/tofetch`, {
+      const response = await fetch(`https://chat-host-mern.onrender.com/togetresult/tofetch`, {
         method: 'POST',
         body: JSON.stringify({ "username": sender }),
         headers: {
@@ -780,7 +780,7 @@ export default function Homescreen(receiver) {
     setUsersingroups((prev) => prev.filter((element) => element._id !== user._id))
   }
   const fetchintialusergroup = async () => {
-    const res1 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/intialindires`, {
+    const res1 = await fetch(`https://chat-host-mern.onrender.com/tofetchindichat/intialindires`, {
       method: 'POST',
       body: JSON.stringify({ receiver: username }),
       headers: { 'Content-Type': 'application/json' }
@@ -797,7 +797,7 @@ export default function Homescreen(receiver) {
     });
 
 
-    const res2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/intialresultgroup`, {
+    const res2 = await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/intialresultgroup`, {
       method: 'POST',
       body: JSON.stringify({ receiver: username }),
       headers: { 'Content-Type': 'application/json' }
@@ -815,7 +815,7 @@ export default function Homescreen(receiver) {
         const { groupname, currentDate, currentTime, groupmember } = group;
 
 
-        const res3 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/intialgroupres`, {
+        const res3 = await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/intialgroupres`, {
           method: 'POST',
           body: JSON.stringify({ groupname }),
           headers: { 'Content-Type': 'application/json' }
@@ -920,7 +920,7 @@ export default function Homescreen(receiver) {
     if (isgroupchat === true) {
 
       delele_result.innerHTML = "Group Chat is deleted.";
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/getgroupmember`, {
+      const response = await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/getgroupmember`, {
         method: 'POST',
         body: JSON.stringify({ "groupname": senderGroupName.current }),
         headers: {
@@ -935,7 +935,7 @@ export default function Homescreen(receiver) {
           newgroupmember.push(user)
         }
       })
-      await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/updategroupmember`, {
+      await fetch(`https://chat-host-mern.onrender.com/tofetchgroup/updategroupmember`, {
         method: 'POST',
         body: JSON.stringify({ "groupname": senderGroupName.current, "groupmember": newgroupmember }),
         headers: {
@@ -948,7 +948,7 @@ export default function Homescreen(receiver) {
     else {
 
       delele_result.innerHTML = "Individual Chat is deleted.";
-      await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/deleteindichat`, {
+      await fetch(`https://chat-host-mern.onrender.com/tofetchindichat/deleteindichat`, {
         method: 'DELETE',
         body: JSON.stringify({ "receiver": receiver, "sender": sender }),
         headers: {
