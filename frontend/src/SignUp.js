@@ -11,6 +11,7 @@ function SignUp() {
 
   const navigate = useNavigate();
 
+
   const submitData = async (e) => {
     e.preventDefault();
     if (password != repassword) {
@@ -27,7 +28,7 @@ function SignUp() {
       const result = document.getElementById("result")
       result.textContent = ""
     }
-    const response1 = await fetch('https://chat-host.onrender.com//tosignup/signup', {
+    const response1 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signup`, {
       method: 'POST',
       body: JSON.stringify({ "username": username }),
       headers: {
@@ -42,7 +43,7 @@ function SignUp() {
       result.textContent = "Username already exists. Try different!";
       return;
     }
-    const res = await fetch("https://chat-host.onrender.com//tofetchgroup/checkgroupexist", {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/checkgroupexist`, {
       method: 'POST',
       body: JSON.stringify({
         "groupname": username
@@ -76,7 +77,7 @@ function SignUp() {
     const result = document.getElementById("result");
     result.className = "text-red-600 ml-24";
     result.textContent = "Details saved successfully.";
-    const response2 = await fetch('https://chat-host.onrender.com//signup/signupnow', {
+    const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signupnow`, {
       method: 'POST',
       body: JSON.stringify({ "username": username, "password": password }),
       headers: {

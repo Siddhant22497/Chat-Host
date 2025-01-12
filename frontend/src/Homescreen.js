@@ -1,11 +1,10 @@
-import { React, useState, useRef, useEffect } from 'react';
+import{ React, useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const { io } = require("socket.io-client");
 
 
-const socket = io.connect("https://chat-host.onrender.com")
-
+const socket=io.connect(`${process.env.REACT_APP_BACKEND_PORT}`)
 export default function Homescreen(receiver) {
   const location = useLocation();
 
@@ -50,6 +49,7 @@ export default function Homescreen(receiver) {
   const [usersingroups, setUsersingroups] = useState([])
 
 
+ 
 
   const switchModal = () => {
     setAddgroupModal(!addgroupModal);
@@ -107,7 +107,7 @@ export default function Homescreen(receiver) {
     senderGroupName.current = "";
     setusersgroupname("");
     if (value.length > 0) {
-      const response = await fetch('https://chat-host.onrender.com/togetresult/tofetch', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/togetresult/tofetch`, {
         method: 'POST',
         body: JSON.stringify({ "username": value }),
         headers: {
@@ -287,7 +287,7 @@ export default function Homescreen(receiver) {
 
   }
   const loadgroupmess = async (receiver, groupname) => {
-    const response = await fetch('https://chat-host.onrender.com/tofetchgroup/loadgroupmessage', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/loadgroupmessage`, {
       method: 'POST',
       body: JSON.stringify({ "groupname": groupname }),
       headers: {
@@ -373,7 +373,7 @@ export default function Homescreen(receiver) {
 
   const loadindimess = async (receiver, sender) => {
 
-    const response = await fetch('https://chat-host.onrender.com/tofetchindichat/tofetchindichat', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/tofetchindichat`, {
       method: 'POST',
       body: JSON.stringify({ "receiver": receiver, "sender": sender }),
       headers: {
@@ -519,7 +519,7 @@ export default function Homescreen(receiver) {
     const currentTime = `${hours}:${minutes}:${seconds}`;
 
     setmessagetext("Type message here");
-    const response = await fetch('https://chat-host.onrender.com/tofetchgroup/savegroupmessage', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupmessage`, {
       method: 'POST',
       body: JSON.stringify({
         "receiver": receiver,
@@ -544,6 +544,7 @@ export default function Homescreen(receiver) {
     const receiver = username;
     const sender = senderGroupName.current;
 
+    
     if (textToSend.length == 0) {
       setmessagetext("Type message here");
       return;
@@ -568,7 +569,7 @@ export default function Homescreen(receiver) {
         const currentTime = `${hours}:${minutes}:${seconds}`;
 
         setmessagetext("Type message here");
-        const response = await fetch('https://chat-host.onrender.com/tofetchindichat/saveindichat', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
             "receiver": receiver,
@@ -596,7 +597,6 @@ export default function Homescreen(receiver) {
         const identifier2 = sender + '#' + receiver;
         const now = new Date();
 
-
         const day = now.getDate();
         const month = now.getMonth() + 1;
         const year = now.getFullYear();
@@ -610,7 +610,7 @@ export default function Homescreen(receiver) {
         const currentTime = `${hours}:${minutes}:${seconds}`;
 
         setmessagetext("Type message here");
-        const response = await fetch('https://chat-host.onrender.com/tofetchindichat/saveindichat', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
             "receiver": receiver,
@@ -625,7 +625,7 @@ export default function Homescreen(receiver) {
           }
         })
         const result = await response.json();
-        const response2 = await fetch('https://chat-host.onrender.com/tofetchindichat/saveindichat', {
+        const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
             "receiver": sender,
@@ -672,7 +672,7 @@ export default function Homescreen(receiver) {
       display_res.textContent = "";
     }
 
-    const response = await fetch('https://chat-host.onrender.com/tosignup/signup', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signup`, {
       method: 'POST',
       body: JSON.stringify({ "username": val }),
       headers: {
@@ -694,7 +694,7 @@ export default function Homescreen(receiver) {
 
 
 
-    const res = await fetch("https://chat-host.onrender.com/tofetchgroup/checkgroupexist", {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/checkgroupexist`, {
       method: 'POST',
       body: JSON.stringify({
         "groupname": val
@@ -728,7 +728,7 @@ export default function Homescreen(receiver) {
 
     const currentDate = `${day}/${month}/${year}`;
     const currentTime = `${hours}:${minutes}:${seconds}`;
-    const response2 = await fetch('https://chat-host.onrender.com/tofetchgroup/savegroupinfo', {
+    const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupinfo`, {
       method: 'POST',
       body: JSON.stringify({
         "receiver": username,
@@ -756,7 +756,7 @@ export default function Homescreen(receiver) {
     const sender = e.target.value;
 
     if (sender.length > 0) {
-      const response = await fetch('https://chat-host.onrender.com/togetresult/tofetch', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/togetresult/tofetch`, {
         method: 'POST',
         body: JSON.stringify({ "username": sender }),
         headers: {
@@ -788,7 +788,7 @@ export default function Homescreen(receiver) {
     setUsersingroups((prev) => prev.filter((element) => element._id !== user._id))
   }
   const fetchintialusergroup = async () => {
-    const res1 = await fetch('https://chat-host.onrender.com/tofetchindichat/intialindires', {
+    const res1 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/intialindires`, {
       method: 'POST',
       body: JSON.stringify({ receiver: username }),
       headers: { 'Content-Type': 'application/json' }
@@ -805,7 +805,7 @@ export default function Homescreen(receiver) {
     });
 
 
-    const res2 = await fetch('https://chat-host.onrender.com/tofetchgroup/intialresultgroup', {
+    const res2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/intialresultgroup`, {
       method: 'POST',
       body: JSON.stringify({ receiver: username }),
       headers: { 'Content-Type': 'application/json' }
@@ -823,7 +823,7 @@ export default function Homescreen(receiver) {
         const { groupname, currentDate, currentTime, groupmember } = group;
 
 
-        const res3 = await fetch('https://chat-host.onrender.com/tofetchgroup/intialgroupres', {
+        const res3 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/intialgroupres`, {
           method: 'POST',
           body: JSON.stringify({ groupname }),
           headers: { 'Content-Type': 'application/json' }
@@ -928,7 +928,7 @@ export default function Homescreen(receiver) {
     if (isgroupchat == true) {
 
       delele_result.innerHTML = "Group Chat is deleted.";
-      const response = await fetch('https://chat-host.onrender.com/tofetchgroup/getgroupmember', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/getgroupmember`, {
         method: 'POST',
         body: JSON.stringify({ "groupname": senderGroupName.current }),
         headers: {
@@ -943,7 +943,7 @@ export default function Homescreen(receiver) {
           newgroupmember.push(user)
         }
       })
-      const response2 = await fetch('https://chat-host.onrender.com/tofetchgroup/updategroupmember', {
+      const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/updategroupmember`, {
         method: 'POST',
         body: JSON.stringify({ "groupname": senderGroupName.current, "groupmember": newgroupmember }),
         headers: {
@@ -956,7 +956,7 @@ export default function Homescreen(receiver) {
     else {
 
       delele_result.innerHTML = "Individual Chat is deleted.";
-      const response = await fetch('https://chat-host.onrender.com/tofetchindichat/deleteindichat', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/deleteindichat`, {
         method: 'DELETE',
         body: JSON.stringify({ "receiver": receiver, "sender": sender }),
         headers: {

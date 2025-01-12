@@ -11,6 +11,8 @@ function Login() {
 
   const navigate = useNavigate();
 
+  const PORT=process.env.REACT_APP_FRONT_END;
+
   const callSubmit = async (e) => {
     e.preventDefault();
     if (username.length == 0 || password.length == 0) {
@@ -22,8 +24,8 @@ function Login() {
       let ele = document.getElementById('result');
       ele.textContent = "";
     }
-  
-    const response = await fetch('https://chat-host.onrender.com/tologin', {
+
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tologin`, {
       method: 'POST',
       body: JSON.stringify({ "username": username, "password": password }),
       headers: {

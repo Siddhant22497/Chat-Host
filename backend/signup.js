@@ -11,10 +11,7 @@ const app=express();
 
 router.post('/signup',async (req,resp)=>{
     let result=await user_info.find({username:req.body.username});
-    resp.send(result);
-    
-    
-    
+    resp.send(result);    
 })
 
 router.post('/signupnow',async (req,resp)=>{
