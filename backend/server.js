@@ -60,7 +60,7 @@ app.use('/togetresult', togetresult);
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: [`http://localhost:${process.env.FRONT_END_PORT}`],
+        origin: [`${process.env.FRONT_END_PORT}`],
         methods: ["GET", "POST"],
     },
     pingTimeout: 120000,
