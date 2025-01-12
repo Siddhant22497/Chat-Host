@@ -71,7 +71,7 @@ else {
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: [`${process.env.FRONT_END_PORT}`],
+        origin: "https://chat-host-mern.onrender.com",
         methods: ["GET", "POST"],
     },
     pingTimeout: 120000,
