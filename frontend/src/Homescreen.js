@@ -1,10 +1,10 @@
-import{ React, useState, useRef, useEffect } from 'react';
+import { React, useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const { io } = require("socket.io-client");
 
 
-const socket=io.connect(`${process.env.REACT_APP_BACKEND_PORT}`)
+const socket = io.connect(`${process.env.REACT_APP_BACKEND_PORT}`)
 export default function Homescreen(receiver) {
   const location = useLocation();
 
@@ -19,7 +19,6 @@ export default function Homescreen(receiver) {
   const [searchusers, setSearchsUsers] = useState([]);
 
   const [usersgroupname, setusersgroupname] = useState("");
-  const [searchgroupMessages, setsearchGroupMessages] = useState([]);
 
   const [searchbool, setSearchbool] = useState(false);
 
@@ -49,7 +48,7 @@ export default function Homescreen(receiver) {
   const [usersingroups, setUsersingroups] = useState([])
 
 
- 
+
 
   const switchModal = () => {
     setAddgroupModal(!addgroupModal);
@@ -74,7 +73,7 @@ export default function Homescreen(receiver) {
     let a = searchimage.attributes['src']
     senderGroupName.current = "";
     setusersgroupname("");
-    if (a.nodeValue == '/leftArrow.png') {
+    if (a.nodeValue === '/leftArrow.png') {
       fetchintialusergroup();
       a.nodeValue = '/searchIcon.png';
       setSearchbool(false);
@@ -94,12 +93,7 @@ export default function Homescreen(receiver) {
 
   }
 
-  const handleContainerClick = (event) => {
-    const target = event.target;
-    const searchimage = document.getElementById('search_image');
-    let a = searchimage.attributes['src']
-    const flag = target.classList.contains('searchnot');
-  }
+
 
   const oninput = async (e) => {
     const value = e.target.value;
@@ -116,14 +110,12 @@ export default function Homescreen(receiver) {
       })
       const data = await response.json();
       const data_users = data.users
-      const data_group = data.groupMessages;
 
       setSearchsUsers(data_users || []);
-      setsearchGroupMessages(data_group || []);
+   
     }
     else {
       setSearchsUsers([]);
-      setsearchGroupMessages([]);
     }
   }
 
@@ -139,7 +131,7 @@ export default function Homescreen(receiver) {
 
       fetchintialusergroup();
 
-      if (currsendmessage == "") {
+      if (currsendmessage === "") {
         setCurrsendmessage({
           "currentDate": currentDate,
           "currentTime": currentTime,
@@ -149,14 +141,14 @@ export default function Homescreen(receiver) {
         });
 
 
-        if (senderGroupName.current == "") return;
+        if (senderGroupName.current === "") return;
 
-        if (isgroupchat == false) {
+        if (isgroupchat === false) {
           if (senderGroupName.current === receiver)
             loadindimess(receiver, senderGroupName.current);
         }
       }
-      else if (currsendmessage["currentTime"] != currentTime) {
+      else if (currsendmessage["currentTime"] !== currentTime) {
 
         setCurrsendmessage({
           "currentDate": currentDate,
@@ -167,9 +159,9 @@ export default function Homescreen(receiver) {
         });
 
 
-        if (senderGroupName.current == "") return;
+        if (senderGroupName.current === "") return;
 
-        if (isgroupchat == false) {
+        if (isgroupchat === false) {
           if (senderGroupName.current === receiver)
             loadindimess(username, receiver);
         }
@@ -199,10 +191,10 @@ export default function Homescreen(receiver) {
         });
 
 
-        if (senderGroupName.current == "") return;
+        if (senderGroupName.current === "") return;
 
-        if (isgroupchat == true) {
-          if (senderGroupName.current == groupname) {
+        if (isgroupchat === true) {
+          if (senderGroupName.current === groupname) {
             loadgroupmess(receiver, senderGroupName.current);
           }
         }
@@ -218,10 +210,10 @@ export default function Homescreen(receiver) {
 
 
 
-        if (senderGroupName.current == "") return;
+        if (senderGroupName.current === "") return;
 
-        if (isgroupchat == true) {
-          if (senderGroupName.current == groupname) {
+        if (isgroupchat === true) {
+          if (senderGroupName.current === groupname) {
 
             loadgroupmess(receiver, senderGroupName.current);
           }
@@ -253,7 +245,7 @@ export default function Homescreen(receiver) {
     const receiver = username;
     const sender = u2;
     setIsgroupchat(false);
-    if (sender == receiver) {
+    if (sender === receiver) {
       const t1 = receiver + ' (Self)';
 
       setusersgroupname(t1);
@@ -263,7 +255,7 @@ export default function Homescreen(receiver) {
     else {
       setusersgroupname(sender);
       senderGroupName.current = sender;
-      if (flag == "true") {
+      if (flag === "true") {
         const identifier1 = receiver + '#' + sender;
         const identifier2 = sender + '#' + receiver;
         socket.emit("join_room", identifier1);
@@ -300,7 +292,7 @@ export default function Homescreen(receiver) {
 
 
     const messageDisplayContainer = document.getElementById("messageDisplay");
-    if (messageDisplayContainer != null) {
+    if (messageDisplayContainer !== null) {
       messageDisplayContainer.innerHTML = "";
     }
 
@@ -381,10 +373,10 @@ export default function Homescreen(receiver) {
       }
     })
     let messageDisplayContainer = document.getElementById("messageDisplay");
-    if (messageDisplayContainer != null)
+    if (messageDisplayContainer !== null)
       messageDisplayContainer.innerHTML = "";
     const result = await response.json();
-    if (result.length == 0) {
+    if (result.length === 0) {
 
       messageDisplayContainer.innerHTML = "";
       return;
@@ -450,7 +442,7 @@ export default function Homescreen(receiver) {
 
 
       const messageTime = document.createElement("span");
-      messageTime.className = `text-[1vw] ${sender === receiver || whichuser == receiver ? "text-white" : "text-black"} self-end`;
+      messageTime.className = `text-[1vw] ${sender === receiver || whichuser === receiver ? "text-white" : "text-black"} self-end`;
       messageTime.innerText = currentTime;
 
 
@@ -473,8 +465,8 @@ export default function Homescreen(receiver) {
 
   const messageBox = async (e, flag = "true") => {
     e.stopPropagation();
-    if (flag == "true") {
-      if (messagetext == "Type message here") {
+    if (flag === "true") {
+      if (messagetext === "Type message here") {
         const d = e.target.value;
         const i = d.indexOf('Type message here')
         const m1 = d.substring(i + ('Type message here'.length));
@@ -490,7 +482,7 @@ export default function Homescreen(receiver) {
       }
     }
     else {
-      if (messagetext == "Type message here") {
+      if (messagetext === "Type message here") {
         e.target.value = "";
         setmessagetext(e.target.value);
       }
@@ -519,7 +511,7 @@ export default function Homescreen(receiver) {
     const currentTime = `${hours}:${minutes}:${seconds}`;
 
     setmessagetext("Type message here");
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupmessage`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupmessage`, {
       method: 'POST',
       body: JSON.stringify({
         "receiver": receiver,
@@ -544,14 +536,14 @@ export default function Homescreen(receiver) {
     const receiver = username;
     const sender = senderGroupName.current;
 
-    
-    if (textToSend.length == 0) {
+
+    if (textToSend.length === 0) {
       setmessagetext("Type message here");
       return;
     }
-    if (isgroupchat == false) {
+    if (isgroupchat === false) {
       const identifier = receiver + ' (Self)';
-      if (senderGroupName.current == identifier) {
+      if (senderGroupName.current === identifier) {
 
 
         const now = new Date();
@@ -569,7 +561,7 @@ export default function Homescreen(receiver) {
         const currentTime = `${hours}:${minutes}:${seconds}`;
 
         setmessagetext("Type message here");
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
+        await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
             "receiver": receiver,
@@ -624,7 +616,7 @@ export default function Homescreen(receiver) {
             'Content-Type': 'application/json'
           }
         })
-        const result = await response.json();
+        await response.json();
         const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/saveindichat`, {
           method: 'POST',
           body: JSON.stringify({
@@ -639,7 +631,7 @@ export default function Homescreen(receiver) {
             'Content-Type': 'application/json'
           }
         })
-        const result2 = await response2.json();
+        await response2.json();
         socket.emit('send_message', { identifier1, identifier2, receiver, sender, textToSend, currentDate, currentTime });
 
         setSearchbool(false);
@@ -652,7 +644,7 @@ export default function Homescreen(receiver) {
   const submitNewGroup = async () => {
     let group_name = document.getElementById("group_name");
     const val = group_name.value;
-    if (val.length == 0) {
+    if (val.length === 0) {
       let display_res = document.getElementById("display_res");
       display_res.textContent = "Enter Group Name.";
       return;
@@ -681,7 +673,7 @@ export default function Homescreen(receiver) {
     })
     const data = await response.json();
     const length = data.length;
-    if (length == 1) {
+    if (length === 1) {
       let display_res = document.getElementById("display_res");
       display_res.textContent = "Group name matches with username.";
       return;
@@ -704,7 +696,7 @@ export default function Homescreen(receiver) {
       }
     })
     const res2 = await res.json();
-    if (res2.flag == "true") {
+    if (res2.flag === "true") {
       let display_res = document.getElementById("display_res");
       display_res.textContent = "Group name already exists. Please choose a different one.";
       return;
@@ -728,7 +720,7 @@ export default function Homescreen(receiver) {
 
     const currentDate = `${day}/${month}/${year}`;
     const currentTime = `${hours}:${minutes}:${seconds}`;
-    const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupinfo`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/savegroupinfo`, {
       method: 'POST',
       body: JSON.stringify({
         "receiver": username,
@@ -765,7 +757,7 @@ export default function Homescreen(receiver) {
       })
       const data = await response.json();
       const data_users = data.users
-      const data_group = data.groupMessages;
+    
 
       setSearchUsersgroup(data_users || []);
 
@@ -925,7 +917,7 @@ export default function Homescreen(receiver) {
     const receiver = username;
     const sender = senderGroupName.current;
     let delele_result = document.getElementById("delete_result");
-    if (isgroupchat == true) {
+    if (isgroupchat === true) {
 
       delele_result.innerHTML = "Group Chat is deleted.";
       const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/getgroupmember`, {
@@ -939,11 +931,11 @@ export default function Homescreen(receiver) {
       let groupmember = res[0].groupmember;
       let newgroupmember = [];
       groupmember.forEach((user) => {
-        if (user != username) {
+        if (user !== username) {
           newgroupmember.push(user)
         }
       })
-      const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/updategroupmember`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchgroup/updategroupmember`, {
         method: 'POST',
         body: JSON.stringify({ "groupname": senderGroupName.current, "groupmember": newgroupmember }),
         headers: {
@@ -956,7 +948,7 @@ export default function Homescreen(receiver) {
     else {
 
       delele_result.innerHTML = "Individual Chat is deleted.";
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/deleteindichat`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/deleteindichat`, {
         method: 'DELETE',
         body: JSON.stringify({ "receiver": receiver, "sender": sender }),
         headers: {
@@ -984,10 +976,10 @@ export default function Homescreen(receiver) {
       <div className='class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
         {username === "" && (
           <>
-          
+
             <div className="modal-background fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-70" />
 
-       
+
             <div
               className='fixed top-10 left-[25vw] h-[80vh] w-[50vw] z-20 rounded-2xl flex flex-col justify-center items-center'
               style={{
@@ -1072,7 +1064,7 @@ export default function Homescreen(receiver) {
             <div className='bh-[6vh] flex justify-items-center'> <button className='bg-green-500  hover:bg-green-600  hover:scale-105   hover:border-green-600 border-green-500 rounded-md mx-auto border-4  text-[1.5vw] w-[8vw]' onClick={e => submitNewGroup(e)} >Submit</button></div>
 
           </div>}
-        <div className='flex flex-row h-screen' onClick={handleContainerClick} >
+        <div className='flex flex-row h-screen' >
           <div className="bg-gray-400 flex items-center justify-center" style={{ width: '5vw', height: '100vh' }}>
 
 
@@ -1160,7 +1152,7 @@ export default function Homescreen(receiver) {
               <div className='flex-1 overflow-y-auto class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]' id="messageDisplay" style={{
                 height: '80%', backgroundImage: "linear-gradient( 109.6deg,  rgba(112,246,255,0.33) 11.2%, rgba(221,108,241,0.26) 42%, rgba(229,106,253,0.71) 71.5%, rgba(123,183,253,1) 100.2% )"
               }} ></div>
-              <div className='bg-gray-500' style={{ height: '10%' }}><input type="text" value={messagetext} onChange={e => messageBox(e)} onClick={e => messageBox(e, false)} name="" id="" className='inline-block ' style={{ width: '75%', paddingLeft: '1%', marginLeft: '10%', height: '70%', marginTop: '1%' }} /> <button style={{ width: '10%', height: '50%' }}><img src="/rightarrow.png" onClick={isgroupchat == false ? (e) => sendMessage(e) : (e) => sendGroupmessage(e)} style={{ width: "50%", height: '150%', paddingTop: '5%' }} /></button></div>
+              <div className='bg-gray-500' style={{ height: '10%' }}><input type="text" value={messagetext} onChange={e => messageBox(e)} onClick={e => messageBox(e, false)} name="" id="" className='inline-block ' style={{ width: '75%', paddingLeft: '1%', marginLeft: '10%', height: '70%', marginTop: '1%' }} /> <button style={{ width: '10%', height: '50%' }}><img src="/rightarrow.png" alt='send_arrow' onClick={isgroupchat === false ? (e) => sendMessage(e) : (e) => sendGroupmessage(e)} style={{ width: "50%", height: '150%', paddingTop: '5%' }} /></button></div>
             </div>)}
         </div>
         {deleleCHAT && (
@@ -1169,7 +1161,7 @@ export default function Homescreen(receiver) {
         {deleleCHAT &&
           <div className='bg-white fixed top-[30vh] left-[25vw] h-[30vh] w-[50vw] z-20 rounded-2xl '>
             <div className='text-black h-[5vh] text-[1.4vw] mx-auto w-[30vw] mt-[2vh] text-center font-semibold'>Are you sure you want to delete this chat?</div>
-            <div className='text-black h-[5vh] text-[1.4vw] w-[50vw] text-center font-semibold'>{isgroupchat == true ? "Deleting it will also remove you from the group." : "Deleting the message will also remove the user from your home list."}</div>
+            <div className='text-black h-[5vh] text-[1.4vw] w-[50vw] text-center font-semibold'>{isgroupchat === true ? "Deleting it will also remove you from the group." : "Deleting the message will also remove the user from your home list."}</div>
             <div id="delete_result" className='h-[5vh] text-green-500 mt-[1vh] text-[1.5vw] text-center'></div>
             <div className='mt-[0.5vh]'><button className='bg-green-500 hover:bg-green-600 h-[9vh] hover:scale-105 rounded-xl border-4 border-green-500 hover:border-green-600 w-[15vw] ml-[3vw]' onClick={deletechat}>Yes</button><button onClick={toggleExit} className='bg-red-500 hover:bg-red-700 border-red-500  hover:border-red-700  hover:scale-105  border-4 h-[9vh] w-[15vw] rounded-xl float-right mr-[3vw]'>No</button></div>
 

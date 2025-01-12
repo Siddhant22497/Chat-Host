@@ -5,15 +5,10 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const path = require('path');
-const dotenv=require('dotenv')
+const dotenv = require('dotenv')
 
 
-if(process.env.NODE_ENV!=="production")
-{
-    dotenv.config({
-        path:'./env'
-    })
-}
+
 
 db();
 
@@ -24,7 +19,7 @@ const individualmessage = require('./individualmessage');
 
 
 
-const _dirname = path.resolve();
+
 
 
 const tologin = require('./login.js');
@@ -55,6 +50,22 @@ app.use('/tofetchindichat', tofetchindichat);
 
 
 app.use('/togetresult', togetresult);
+
+
+const _dirname = path.resolve();
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(_dirname, "/frontend/build",)))
+
+    app.get("*", (req, resp) => {
+        resp.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+    })
+}
+else {
+    app.get("/", (req, resp) => {
+        console.log("Api is running successfully");
+    })
+}
+
 
 
 const server = http.createServer(app);
@@ -88,4 +99,6 @@ io.on("connection", (socket) => {
 
 
 
-server.listen(PORT);
+server.listen(PORT, () => {
+    console.log("Running at PORT ", PORT);
+});

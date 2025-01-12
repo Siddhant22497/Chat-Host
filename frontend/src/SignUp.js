@@ -14,12 +14,12 @@ function SignUp() {
 
   const submitData = async (e) => {
     e.preventDefault();
-    if (password != repassword) {
+    if (password !== repassword) {
       const result = document.getElementById("result")
       result.textContent = "Password and Re Enter Password not match"
       return;
     }
-    if (username.length == 0) {
+    if (username.length === 0) {
       const result = document.getElementById("result")
       result.textContent = "Username is empty"
       return;
@@ -37,7 +37,7 @@ function SignUp() {
     })
     const data = await response1.json();
     const length = data.length;
-    if (length == 1) {
+    if (length === 1) {
       const result = document.getElementById("result")
       result.className = "text-red-600 ml-12";
       result.textContent = "Username already exists. Try different!";
@@ -53,13 +53,13 @@ function SignUp() {
       }
     })
     const res2 = await res.json();
-    if (res2.flag == "true") {
+    if (res2.flag === "true") {
       const result = document.getElementById("result")
       result.className = "text-red-600 ml-12";
       result.textContent = "Username already exists. Please try a different one.";
       return;
     }
-    if(password.length==0)
+    if(password.length===0)
     {
       const result = document.getElementById("result")
       result.className = "text-red-600 ml-12";
@@ -77,7 +77,7 @@ function SignUp() {
     const result = document.getElementById("result");
     result.className = "text-red-600 ml-24";
     result.textContent = "Details saved successfully.";
-    const response2 = await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signupnow`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tosignup/signupnow`, {
       method: 'POST',
       body: JSON.stringify({ "username": username, "password": password }),
       headers: {
@@ -101,12 +101,12 @@ function SignUp() {
           <form action="" id="form_login" className='border-t-4 border-r-4 border-b-4 box-content border-l-4  border-black h-[70vh] w-[25vw] tablet:w-[50vw]'>
             <p className='mt-[2vh] flex justify-center text-[3xl] mb-[3.5vh]'>SignUp</p>
             <label htmlFor="name_id" className='ml-[2vw] text-[3vh]'>Username</label> <br />
-            <input className='h-[5vh] ml-[2vw] text-[3vh] mt-[1vh] tablet:w-[45vw] w-[20vw] rounded-md  ' required="required" type="text" id="name_id" placeholder={username.length == 0 ? `Enter your Username` : username} onChange={(e) => setUsername(e.target.value)} />
+            <input className='h-[5vh] ml-[2vw] text-[3vh] mt-[1vh] tablet:w-[45vw] w-[20vw] rounded-md  ' required="required" type="text" id="name_id" placeholder={username.length === 0 ? `Enter your Username` : username} onChange={(e) => setUsername(e.target.value)} />
             <br />
             <label htmlFor="password_id" className='ml-[2vw] text-[3vh]' >Password</label> <br />
-            <input className='h-[5vh] ml-[2vw] text-[3vh] mt-[1vh] tablet:w-[45vw] w-[20vw] rounded-md ' required="required" type="password" name="password_name" id="password_id" placeholder={password.length == 0 ? `Enter your Password` : password} onChange={(e) => setPassword(e.target.value)} />
+            <input className='h-[5vh] ml-[2vw] text-[3vh] mt-[1vh] tablet:w-[45vw] w-[20vw] rounded-md ' required="required" type="password" name="password_name" id="password_id" placeholder={password.length === 0 ? `Enter your Password` : password} onChange={(e) => setPassword(e.target.value)} />
             <label htmlFor="re-password_id" className='ml-[2vw] text-[3vh]' >Re-Password</label> <br />
-            <input className='h-[5vh] ml-[2vw] text-[3vh]  mt-[1vh]  tablet:w-[45vw] w-[20vw] rounded-md ' required="required" type="password" name="re-password_name" id="re-password_id" placeholder={repassword.length == 0 ? `Enter your Password` : repassword} onChange={(e) => setRePassword(e.target.value)} />
+            <input className='h-[5vh] ml-[2vw] text-[3vh]  mt-[1vh]  tablet:w-[45vw] w-[20vw] rounded-md ' required="required" type="password" name="re-password_name" id="re-password_id" placeholder={repassword.length === 0 ? `Enter your Password` : repassword} onChange={(e) => setRePassword(e.target.value)} />
             <button onClick={(e) => submitData(e)} className="bg-green-500 hover:bg-green-700 hover:scale-105 rounded-xl  mt-[3vh] ml-[2vw] tablet:w-[45vw]  text-[3vh] w-[20vw] h-[5vh]">Sign Up</button>
             <p className='mt-[1.5vh] mx-auto text-[2vh] tablet:w-[50vw] w-[20vw] flex justify-center'>Already have an account?<Link to="/" className='underline'>Login</Link></p>
             <p id='result' className='text-black mx-auto mt-[1vh] text-[2.3vh] flex justify-center'></p>

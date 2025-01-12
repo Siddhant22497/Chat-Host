@@ -11,11 +11,10 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const PORT=process.env.REACT_APP_FRONT_END;
 
   const callSubmit = async (e) => {
     e.preventDefault();
-    if (username.length == 0 || password.length == 0) {
+    if (username.length === 0 || password.length === 0) {
       let ele = document.getElementById('result');
       ele.textContent = "UserName or Password is empty."
       return;
@@ -33,7 +32,7 @@ function Login() {
       }
     })
     const data = await response.json();
-    if (data.length == 1) {
+    if (data.length === 1) {
       let ele = document.getElementById('result');
       ele.textContent = "Login successful."
       setTimeout(() => {
@@ -64,10 +63,10 @@ function Login() {
           <form action="" id="form_login" className='border-t-4 border-r-4 border-b-4 border-l-4  border-black h-[71.1vh] w-[25vw] tablet:w-[50vw]'>
             <p className='mt-[2vh] flex justify-center text-xl tablet:text-2xl mb-[6vh]'>Login</p>
             <label htmlFor="name_id" className='ml-[2vw] mt-[1vh] text-md tablet:text-sm'>Username</label> <br />
-            <input required="required" className='h-[6vh] rounded-md ml-[2vw] mt-[1vh] tablet:w-[45vw] w-[20vw] border-4 border-gray text-[3vh]   rounded-md ' type="text" id="name_id" placeholder={username.length == 0 ? `Enter your Username` : username} onChange={(e) => setUsername(e.target.value)} />
+            <input required="required" className='h-[6vh] rounded-md ml-[2vw] mt-[1vh] tablet:w-[45vw] w-[20vw] border-4 border-gray text-[3vh]   rounded-md ' type="text" id="name_id" placeholder={username.length === 0 ? `Enter your Username` : username} onChange={(e) => setUsername(e.target.value)} />
             <br />
             <label htmlFor="number_id" className='ml-[2vw] text-md tablet:text-sm' >Password</label> <br />
-            <input required="required" className='h-[6vh]  rounded-md  ml-[2vw] tablet:w-[45vw] mt-[1vh] border-4 border-gray text-[3vh] w-[20vw] ' type="password" name="number_name" id="number_id" placeholder={password.length == 0 ? `Enter your Password` : password} onChange={(e) => setPassword(e.target.value)} />
+            <input required="required" className='h-[6vh]  rounded-md  ml-[2vw] tablet:w-[45vw] mt-[1vh] border-4 border-gray text-[3vh] w-[20vw] ' type="password" name="number_name" id="number_id" placeholder={password.length === 0 ? `Enter your Password` : password} onChange={(e) => setPassword(e.target.value)} />
             <br />
             <button className="bg-blue-500 rounded-xl hover:bg-blue-700 hover:scale-105 mt-[2vh] tablet:w-[45vw] ml-[2vw] w-[20vw] h-[7vh]" onClick={(e) => callSubmit(e)}>Log In</button>
             <p className='mt-[2vh] mx-auto  flex justify-center text-[2vh]'>Don't have an account?<Link to="/SignUp" className='underline'>Register Here</Link></p>

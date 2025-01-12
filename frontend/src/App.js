@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import SignUp from './SignUp';
 import Login from './Login';
 import Homescreen from './Homescreen';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
-    const location = useLocation(); 
+
     useEffect(() => {
         document.title = 'Chat Host';
       }, []);
