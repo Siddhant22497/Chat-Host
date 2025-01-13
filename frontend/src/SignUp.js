@@ -59,19 +59,17 @@ function SignUp() {
       result.textContent = "Username already exists. Please try a different one.";
       return;
     }
-    if(password.length===0)
-    {
+    if (password.length === 0) {
       const result = document.getElementById("result")
       result.className = "text-red-600 ml-12";
       result.textContent = "Password or Confirm Password cannot be empty.";
-      return;  
+      return;
     }
-    if(username.length>24)
-    {
+    if (username.length > 24) {
       const result = document.getElementById("result")
       result.className = "text-red-600 ml-12";
       result.textContent = "Username must be 24 characters or less.";
-      return; 
+      return;
     }
 
     const result = document.getElementById("result");
@@ -115,10 +113,15 @@ function SignUp() {
         </div>
         <div className="flex items-center box-content border-t-4 border-r-4 border-b-4  border-black border h-[70vh] w-[25vw] tablet:hidden text-[2.3vh] tablet:text-sm text-center ">
 
-        
-        Chat Host is built using React.js for the frontend, with Tailwind CSS for styling and creating responsive layouts. On the backend, Express handles client-server operations, while MongoDB is used for storing schemas, including users, individual messages, and group messages. Socket.io is implemented for real-time communication.
+
+          Chat Host is built using React.js for the frontend, with Tailwind CSS for styling and creating responsive layouts. On the backend, Express handles client-server operations, while MongoDB is used for storing schemas, including users, individual messages, and group messages. Socket.io is implemented for real-time communication.
 
         </div>
+        <span className='hover:scale-110 relative left-[19.8vw] bottom-[43vh] tablet:left-[10vw]'>
+          <a href="https://github.com/Siddhant22497/Chat-Host" target="_blank">
+            <img src="/github-mark.png" alt="GitHub Logo" class="h-[10vh]" />
+          </a>
+        </span>
       </div >
     </>
   );

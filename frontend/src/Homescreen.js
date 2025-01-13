@@ -112,7 +112,7 @@ export default function Homescreen(receiver) {
       const data_users = data.users
 
       setSearchsUsers(data_users || []);
-   
+
     }
     else {
       setSearchsUsers([]);
@@ -757,7 +757,7 @@ export default function Homescreen(receiver) {
       })
       const data = await response.json();
       const data_users = data.users
-    
+
 
       setSearchUsersgroup(data_users || []);
 
@@ -1064,109 +1064,129 @@ export default function Homescreen(receiver) {
             <div className='bh-[6vh] flex justify-items-center'> <button className='bg-green-500  hover:bg-green-600  hover:scale-105   hover:border-green-600 border-green-500 rounded-md mx-auto border-4  text-[1.5vw] w-[8vw]' onClick={e => submitNewGroup(e)} >Submit</button></div>
 
           </div>}
-        <div className='flex flex-row h-screen' >
+        {/* <div className='flex flex-row h-screen' >
+
           <div className="bg-gray-400 flex items-center justify-center" style={{ width: '5vw', height: '100vh' }}>
-
-
+            <span className='hover:scale-110 relative bottom-[40vh] left-[1vw] '>
+              <a href="https://github.com/Siddhant22497/Chat-Host" target="_blank">
+                <img src="/github-mark.png" alt="GitHub Logo" class="h-[10vh] w-[50vw]" />
+              </a>
+            </span>
             <Link to="/" className='inline mt-[85vh]'><button className='bg-white rounded-xl h-[9vh] w-[4.8vw] border-4 text-[1.1vw] border-black hover:bg-gray-500 hover:scale-105' onClick={(e) => emptyUsername()}>Log Out</button></Link>
 
+          </div> */}
+        <div className="flex flex-row h-screen">
+          <div className="bg-gray-400 flex flex-col items-center justify-between" style={{ width: '5vw', height: '100vh' }}>
+            <span className="hover:scale-110 relative top-10">
+              <a href="https://github.com/Siddhant22497/Chat-Host" target="_blank" rel="noopener noreferrer">
+                <img src="/github-mark.png" alt="GitHub Logo" className="h-[10vh] object-contain" />
+              </a>
+            </span>
+            <Link to="/" className="mb-[6vh]">
+              <button
+                className="bg-white rounded-xl h-[9vh] w-[4.8vw] border-4 text-[1.1vw] border-black hover:bg-gray-500 hover:scale-105"
+                onClick={(e) => emptyUsername()}
+              >
+                Log Out
+              </button>
+            </Link>
           </div>
-          <div style={{ width: '40vw' }}>
-            <div className='bg-fixed '>
-              <span className='text-[2vw] font-bold relative top-[2vh] pl-[2vw]'>
-                Chats
-              </span>
+        <div style={{ width: '40vw' }}>
+          <div className='bg-fixed '>
+            <span className='text-[2vw] font-bold relative top-[2vh] pl-[2vw]'>
+              Chats
+            </span>
 
-              <button type="button" id="to_add_group" className='relative left-[14.5vw] text-[2vw] top-3 font-bold border-black rounded-lg border-4 border-solid visible hover:scale-105' onClick={switchModal}>New Group Chat</button>
+            <button type="button" id="to_add_group" className='relative left-[14.5vw] text-[2vw] top-3 font-bold border-black rounded-lg border-4 border-solid visible hover:scale-105' onClick={switchModal}>New Group Chat</button>
 
-              <div className='mt-[5vh] flex justify-center  ml-[2vw]' id='search_container' >
-                <span className='rounded-l-md bg-gray-200 inline-block h-[10vh] pl-[1vw] ml-[0.2vw] hover:cursor-pointer ' onClick={(e) => clickOnImage(e)}><img src="/searchIcon.png" alt="" id='search_image' className='inline-block h-[4vh] mt-[3vh] m' /></span>
-                <input type="text" ref={inputRef} placeholder='Search' id="search_user" className=' h-[10vh] rounded-r-md inline bg-gray-200' onChange={(e) => oninput(e)}
-                  style={{ outline: 'None', width: '90%', paddingLeft: '5%', marginRight: '6%' }} onClick={(e) => clickOnImage(e)} />
-              </div>
+            <div className='mt-[5vh] flex justify-center  ml-[2vw]' id='search_container' >
+              <span className='rounded-l-md bg-gray-200 inline-block h-[10vh] pl-[1vw] ml-[0.2vw] hover:cursor-pointer ' onClick={(e) => clickOnImage(e)}><img src="/searchIcon.png" alt="" id='search_image' className='inline-block h-[4vh] mt-[3vh] m' /></span>
+              <input type="text" ref={inputRef} placeholder='Search' id="search_user" className=' h-[10vh] rounded-r-md inline bg-gray-200' onChange={(e) => oninput(e)}
+                style={{ outline: 'None', width: '90%', paddingLeft: '5%', marginRight: '6%' }} onClick={(e) => clickOnImage(e)} />
             </div>
-            {searchbool ? (
-              <div id='search_panel' className='class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]  searchnot ' style={{ maxHeight: '480px', overflowY: 'scroll' }}>
-
-                {searchusers.length > 0 ? (
-                  <ul className='text-2xl mt-[2vh]  searchnot'>
-                    <span className='ml-[2.2vw] text-[2vw] searchnot'>Search User</span>
-                    {searchusers.map((user) => (
-                      <li key={user._id} onClick={(e) => startindivimessage(e, user.username, "true")} className='hover:scale-105 rounded-xl border-4 cursor-pointer mt-[2vh] ml-[2vw] border-gray-700 pl-[1vw] pt-[1vh]  h-[10vh]  w-[36vw]  searchnot text-[2vw]'>{user.username}</li>
-                    ))}
-                  </ul>
-                ) : <div className='ml-[2.2vw] mt-[0.5vh] text-[2vw] searchnot'>Search User not Found</div>}
-              </div>) :
-              (<div className=' overflow-auto h-[77vh]  class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'  >
-                {intial_user_group.length > 0 && (
-                  <ul className=''>
-                    <div >
-                      {intial_user_group.map((item, index) => (
-                        <li key={index} className='border-4 rounded-xl cursor-pointer mt-[2vh] ml-[2vw] border-gray-700 pl-[1vw] pt-[1vh]  hover:scale-105  w-[36vw]  searchnot text-[2vw]'>
-
-                          {item.groupname ? (
-                            <div className='h-[15vh] relative' onClick={(e) => startgroupmessage(e, item.groupname)}>
-                              <p className="text-[3vh] font-bold text-blue-800">{item.groupname}</p>
-                              <p className="text-[2vh] text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">Message: {item.chat}</p>
-                              <p className="text-[2vh] text-gray-600 float-right mr-2">Date: {item.currentDate}</p>
-                              <p className="text-[2vh] text-gray-600 float-right absolute bottom-0 right-2">Time: {item.currentTime}</p>
-                            </div>
-                          ) : (
-
-                            <div onClick={(e) => startindivimessage(e, item.sender)} className='h-[15vh] relative'>
-                              <p className="text-[3vh] font-bold text-green-800">From: {item.sender}</p>
-                              <p className="text-[2vh] text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">Message: {item.latestMessage}</p>
-                              <p className="text-[2vh] text-gray-600 float-right mr-2">Date: {item.currentDate}</p>
-                              <p className="text-[2vh] text-gray-600 float-right absolute bottom-0  right-2">Time: {item.currentTime}</p>
-                            </div>
-                          )}
-                        </li>
-                      ))}
-                    </div>
-                  </ul>
-                )}
-
-              </div>)}
           </div>
-          {mscreen ? (
-            <div className='text-[2vw] flex justify-center items-center  class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]' style={{
-              width: '55vw', backgroundColor: "#FFDEE9",
-              backgroundImage: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)"
-            }}>
-              <div>
-                Start Messaging
-              </div>
-            </div>) :
-            (<div style={{ width: '55vw', height: '99.5vh' }} >
-              <div className="bg-gray-300 pl-10 text-[6vh] h-10vh" >
-                <div className="flex justify-between items-center w-full">
-                  <span className="text-[3vw]">{usersgroupname}</span>
-                  <span className="inline-block mr-2 mb-2">
-                    <button onClick={toggleExit} className="bg-red-500 h-[8vh] w-[10vw] text-[2vw]   rounded-md hover:bg-red-600 border-4 border-red-500 hover:border-red-600 hover:scale-105">
-                      Exit {isgroupchat === true ? "Group" : "Chat"}
-                    </button>
-                  </span>
-                </div>
-              </div>
+          {searchbool ? (
+            <div id='search_panel' className='class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]  searchnot ' style={{ maxHeight: '480px', overflowY: 'scroll' }}>
 
-              <div className='flex-1 overflow-y-auto class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]' id="messageDisplay" style={{
-                height: '80%', backgroundImage: "linear-gradient( 109.6deg,  rgba(112,246,255,0.33) 11.2%, rgba(221,108,241,0.26) 42%, rgba(229,106,253,0.71) 71.5%, rgba(123,183,253,1) 100.2% )"
-              }} ></div>
-              <div className='bg-gray-500' style={{ height: '10%' }}><input type="text" value={messagetext} onChange={e => messageBox(e)} onClick={e => messageBox(e, false)} name="" id="" className='inline-block ' style={{ width: '75%', paddingLeft: '1%', marginLeft: '10%', height: '70%', marginTop: '1%' }} /> <button style={{ width: '10%', height: '50%' }}><img src="/rightarrow.png" alt='send_arrow' onClick={isgroupchat === false ? (e) => sendMessage(e) : (e) => sendGroupmessage(e)} style={{ width: "50%", height: '150%', paddingTop: '5%' }} /></button></div>
+              {searchusers.length > 0 ? (
+                <ul className='text-2xl mt-[2vh]  searchnot'>
+                  <span className='ml-[2.2vw] text-[2vw] searchnot'>Search User</span>
+                  {searchusers.map((user) => (
+                    <li key={user._id} onClick={(e) => startindivimessage(e, user.username, "true")} className='hover:scale-105 rounded-xl border-4 cursor-pointer mt-[2vh] ml-[2vw] border-gray-700 pl-[1vw] pt-[1vh]  h-[10vh]  w-[36vw]  searchnot text-[2vw]'>{user.username}</li>
+                  ))}
+                </ul>
+              ) : <div className='ml-[2.2vw] mt-[0.5vh] text-[2vw] searchnot'>Search User not Found</div>}
+            </div>) :
+            (<div className=' overflow-auto h-[77vh]  class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'  >
+              {intial_user_group.length > 0 && (
+                <ul className=''>
+                  <div >
+                    {intial_user_group.map((item, index) => (
+                      <li key={index} className='border-4 rounded-xl cursor-pointer mt-[2vh] ml-[2vw] border-gray-700 pl-[1vw] pt-[1vh]  hover:scale-105  w-[36vw]  searchnot text-[2vw]'>
+
+                        {item.groupname ? (
+                          <div className='h-[15vh] relative' onClick={(e) => startgroupmessage(e, item.groupname)}>
+                            <p className="text-[3vh] font-bold text-blue-800">{item.groupname}</p>
+                            <p className="text-[2vh] text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">Message: {item.chat}</p>
+                            <p className="text-[2vh] text-gray-600 float-right mr-2">Date: {item.currentDate}</p>
+                            <p className="text-[2vh] text-gray-600 float-right absolute bottom-0 right-2">Time: {item.currentTime}</p>
+                          </div>
+                        ) : (
+
+                          <div onClick={(e) => startindivimessage(e, item.sender)} className='h-[15vh] relative'>
+                            <p className="text-[3vh] font-bold text-green-800">From: {item.sender}</p>
+                            <p className="text-[2vh] text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">Message: {item.latestMessage}</p>
+                            <p className="text-[2vh] text-gray-600 float-right mr-2">Date: {item.currentDate}</p>
+                            <p className="text-[2vh] text-gray-600 float-right absolute bottom-0  right-2">Time: {item.currentTime}</p>
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </div>
+                </ul>
+              )}
+
             </div>)}
         </div>
-        {deleleCHAT && (
-          <div className="modal-background fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-50" />
-        )}
-        {deleleCHAT &&
-          <div className='bg-white fixed top-[30vh] left-[25vw] h-[30vh] w-[50vw] z-20 rounded-2xl '>
-            <div className='text-black h-[5vh] text-[1.4vw] mx-auto w-[30vw] mt-[2vh] text-center font-semibold'>Are you sure you want to delete this chat?</div>
-            <div className='text-black h-[5vh] text-[1.4vw] w-[50vw] text-center font-semibold'>{isgroupchat === true ? "Deleting it will also remove you from the group." : "Deleting the message will also remove the user from your home list."}</div>
-            <div id="delete_result" className='h-[5vh] text-green-500 mt-[1vh] text-[1.5vw] text-center'></div>
-            <div className='mt-[0.5vh]'><button className='bg-green-500 hover:bg-green-600 h-[9vh] hover:scale-105 rounded-xl border-4 border-green-500 hover:border-green-600 w-[15vw] ml-[3vw]' onClick={deletechat}>Yes</button><button onClick={toggleExit} className='bg-red-500 hover:bg-red-700 border-red-500  hover:border-red-700  hover:scale-105  border-4 h-[9vh] w-[15vw] rounded-xl float-right mr-[3vw]'>No</button></div>
+        {mscreen ? (
+          <div className='text-[2vw] flex justify-center items-center  class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]' style={{
+            width: '55vw', backgroundColor: "#FFDEE9",
+            backgroundImage: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)"
+          }}>
+            <div>
+              Start Messaging
+            </div>
+          </div>) :
+          (<div style={{ width: '55vw', height: '99.5vh' }} >
+            <div className="bg-gray-300 pl-10 text-[6vh] h-10vh" >
+              <div className="flex justify-between items-center w-full">
+                <span className="text-[3vw]">{usersgroupname}</span>
+                <span className="inline-block mr-2 mb-2">
+                  <button onClick={toggleExit} className="bg-red-500 h-[8vh] w-[10vw] text-[2vw]   rounded-md hover:bg-red-600 border-4 border-red-500 hover:border-red-600 hover:scale-105">
+                    Exit {isgroupchat === true ? "Group" : "Chat"}
+                  </button>
+                </span>
+              </div>
+            </div>
 
-          </div>}
-      </div >
+            <div className='flex-1 overflow-y-auto class="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]' id="messageDisplay" style={{
+              height: '80%', backgroundImage: "linear-gradient( 109.6deg,  rgba(112,246,255,0.33) 11.2%, rgba(221,108,241,0.26) 42%, rgba(229,106,253,0.71) 71.5%, rgba(123,183,253,1) 100.2% )"
+            }} ></div>
+            <div className='bg-gray-500' style={{ height: '10%' }}><input type="text" value={messagetext} onChange={e => messageBox(e)} onClick={e => messageBox(e, false)} name="" id="" className='inline-block ' style={{ width: '75%', paddingLeft: '1%', marginLeft: '10%', height: '70%', marginTop: '1%' }} /> <button style={{ width: '10%', height: '50%' }}><img src="/rightarrow.png" alt='send_arrow' onClick={isgroupchat === false ? (e) => sendMessage(e) : (e) => sendGroupmessage(e)} style={{ width: "50%", height: '150%', paddingTop: '5%' }} /></button></div>
+          </div>)}
+      </div>
+      {deleleCHAT && (
+        <div className="modal-background fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-50" />
+      )}
+      {deleleCHAT &&
+        <div className='bg-white fixed top-[30vh] left-[25vw] h-[30vh] w-[50vw] z-20 rounded-2xl '>
+          <div className='text-black h-[5vh] text-[1.4vw] mx-auto w-[30vw] mt-[2vh] text-center font-semibold'>Are you sure you want to delete this chat?</div>
+          <div className='text-black h-[5vh] text-[1.4vw] w-[50vw] text-center font-semibold'>{isgroupchat === true ? "Deleting it will also remove you from the group." : "Deleting the message will also remove the user from your home list."}</div>
+          <div id="delete_result" className='h-[5vh] text-green-500 mt-[1vh] text-[1.5vw] text-center'></div>
+          <div className='mt-[0.5vh]'><button className='bg-green-500 hover:bg-green-600 h-[9vh] hover:scale-105 rounded-xl border-4 border-green-500 hover:border-green-600 w-[15vw] ml-[3vw]' onClick={deletechat}>Yes</button><button onClick={toggleExit} className='bg-red-500 hover:bg-red-700 border-red-500  hover:border-red-700  hover:scale-105  border-4 h-[9vh] w-[15vw] rounded-xl float-right mr-[3vw]'>No</button></div>
+
+        </div>}
+    </div >
 
     </>
   );
