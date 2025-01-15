@@ -1016,7 +1016,7 @@ export default function Homescreen(receiver) {
                           key={user._id}
                           className="flex items-center justify-between border-4 rounded-xl hover:scale-105 cursor-pointer border-gray-700 mt-[2vh] ml-[0.7vw] h-[10vh] w-[21vw] text-[2vw] p-2"
                         >
-                          <span>{user.username}</span>
+                        <div className='text-[1.1vw]'>{user.username}</div>
                           <button
                             type="button"
                             onClick={(e) => addingroup(e, user)}
@@ -1042,7 +1042,7 @@ export default function Homescreen(receiver) {
                       key={user._id}
                       className="flex items-center justify-between border-4 rounded-xl hover:scale-105 cursor-pointer border-black ml-[0.7vw] mt-[2vh] h-[10vh] w-[21vw] text-[2vw] p-2"
                     >
-                      <span>{user.username}</span>
+                    <div className='text-[1.1vw]'>{user.username}</div>
                       <button
                         type="button"
                         onClick={(e) => removeingroup(e, user)}
