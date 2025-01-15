@@ -14,10 +14,10 @@ router.post("/getgroupmember", async (req, resp) => {
 });
 
 router.post("/updategroupmember", async (req, resp) => {
-  const res = await groupchat.updateOne({
-    groupname: req.body.groupname,
-    groupmember: req.body.groupmember,
-  });
+  const res = await groupchat.updateOne(
+    { groupname: req.body.groupname },
+    { $set: { groupmember: req.body.groupmember } } 
+  );
   resp.send(res);
 });
 
