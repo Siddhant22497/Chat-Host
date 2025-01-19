@@ -37,7 +37,7 @@ function Login() {
       ele.textContent = "Login successful."
       setTimeout(() => {
         navigate('/Homescreen', { state: { "username": username } });
-      }, 1000);
+      }, 500);
     }
     else {
       let ele = document.getElementById('result');
