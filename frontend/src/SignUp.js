@@ -82,7 +82,7 @@ function SignUp() {
     })
     setTimeout(() => {
       navigate('/Homescreen', { state: { "username": username } });
-    }, 1000);
+    }, 500);
 
   }
   return (
