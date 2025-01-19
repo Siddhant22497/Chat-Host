@@ -17,6 +17,7 @@ router.post('/signup',async (req,resp)=>{
 router.post('/signupnow',async (req,resp)=>{
     let result2=await user_info.create({username:req.body.username,password:req.body.password});
     const result=await result2.save();
+    resp.send();
 })
 
 module.exports=router;
