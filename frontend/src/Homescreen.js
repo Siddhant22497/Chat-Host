@@ -1082,9 +1082,9 @@ export default function Homescreen(receiver) {
                 <img src="/github-mark.png" alt="GitHub Logo" className="h-[10vh] object-contain" />
               </a>
             </span>
-            <Link to="/" className="mb-[6vh]">
+            <Link to="/" className="mb-[2vh]">
               <button
-                className="bg-white rounded-xl h-[9vh] w-[4.8vw] border-4 text-[1.1vw] border-black hover:bg-gray-500 hover:scale-105"
+                className="bg-white rounded-xl h-[9vh] w-[4.8vw] border-4 text-[1.1vw] border-black  hover:scale-110"
                 onClick={(e) => emptyUsername()}
               >
                 Log Out
