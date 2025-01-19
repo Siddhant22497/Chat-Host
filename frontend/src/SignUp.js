@@ -39,7 +39,7 @@ function SignUp() {
     const length = data.length;
     if (length === 1) {
       const result = document.getElementById("result")
-      result.className = "text-red-600 ml-12";
+    
       result.textContent = "Username already exists. Try different!";
       return;
     }
@@ -55,25 +55,23 @@ function SignUp() {
     const res2 = await res.json();
     if (res2.flag === "true") {
       const result = document.getElementById("result")
-      result.className = "text-red-600 ml-12";
       result.textContent = "Username already exists. Please try a different one.";
       return;
     }
     if (password.length === 0) {
       const result = document.getElementById("result")
-      result.className = "text-red-600 ml-12";
+  
       result.textContent = "Password or Confirm Password cannot be empty.";
       return;
     }
     if (username.length > 24) {
       const result = document.getElementById("result")
-      result.className = "text-red-600 ml-12";
+
       result.textContent = "Username must be 24 characters or less.";
       return;
     }
 
     const result = document.getElementById("result");
-    result.className = "text-red-600 ml-24";
     result.textContent = "Details saved successfully.";
     await fetch(`https://chat-host-mern.onrender.com/tosignup/signupnow`, {
       method: 'POST',
@@ -107,7 +105,7 @@ function SignUp() {
             <input className='h-[5vh] ml-[2vw] text-[3vh]  mt-[1vh]  tablet:w-[45vw] w-[20vw] rounded-md ' required="required" type="password" name="re-password_name" id="re-password_id" placeholder={repassword.length === 0 ? `Enter your Password` : repassword} onChange={(e) => setRePassword(e.target.value)} />
             <button onClick={(e) => submitData(e)} className="bg-green-500 hover:bg-green-700 hover:scale-105 rounded-xl  mt-[3vh] ml-[2vw] tablet:w-[45vw]  text-[3vh] w-[20vw] h-[5vh]">Sign Up</button>
             <p className='mt-[1.5vh] mx-auto text-[2vh] tablet:w-[50vw] w-[20vw] flex justify-center'>Already have an account?<Link to="/" className='underline'>Login</Link></p>
-            <p id='result' className='text-black mx-auto mt-[1vh] text-[2.3vh] flex justify-center'></p>
+            <p id='result' className='text-red-600 mx-auto mt-[1vh] text-[2.3vh] flex justify-center'></p>
 
           </form>
         </div>
@@ -119,7 +117,7 @@ function SignUp() {
         </div>
         <span className='hover:scale-110 relative left-[19.8vw] bottom-[43vh] tablet:left-[10vw]'>
           <a href="https://github.com/Siddhant22497/Chat-Host" target="_blank">
-            <img src="/github-mark.png" alt="GitHub Logo" class="h-[10vh]" />
+            <img src="/github-mark.png" alt="GitHub Logo" className="h-[10vh]" />
           </a>
         </span>
       </div >
