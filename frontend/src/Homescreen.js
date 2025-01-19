@@ -948,13 +948,24 @@ export default function Homescreen(receiver) {
     else {
 
       delele_result.innerHTML = "Individual Chat is deleted.";
-      await fetch(`https://chat-host-mern.onrender.com/tofetchindichat/deleteindichat`, {
-        method: 'DELETE',
-        body: JSON.stringify({ "receiver": receiver, "sender": sender }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+        if ((receiver + " (Self)") == sender) {
+        await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/deleteindichat`, {
+          method: 'DELETE',
+          body: JSON.stringify({ "receiver": receiver, "sender": receiver }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      }
+      else {
+        await fetch(`${process.env.REACT_APP_BACKEND_PORT}/tofetchindichat/deleteindichat`, {
+          method: 'DELETE',
+          body: JSON.stringify({ "receiver": receiver, "sender": sender }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      }
     }
     setTimeout(() => {
       delele_result.innerHTML = "";
