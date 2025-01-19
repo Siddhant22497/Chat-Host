@@ -79,7 +79,7 @@ function Login() {
         </div>
         <span  className='hover:scale-110 relative left-[20vw] bottom-[43vh] tablet:left-[10vw]'>
         <a href="https://github.com/Siddhant22497/Chat-Host" target="_blank">
-          <img src="/github-mark.png" alt="GitHub Logo" class="h-[10vh]" />
+          <img src="/github-mark.png" alt="GitHub Logo" className="h-[10vh]" />
         </a>
         </span>
 
