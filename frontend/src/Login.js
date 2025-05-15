@@ -28,36 +28,34 @@ function Login({ isDarkMode, setDarkMode }) {
     }
 
     const resultElement = document.getElementById("result");
-    try {
-      const response = await fetch(`https://chat-host-mern.onrender.com/tologin`, {
-        method: 'POST',
-        body: JSON.stringify({ username, password }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
 
-      if (response.status === 200) {
-        resultElement.textContent = "Login successful.";
-        setTimeout(() => {
-          navigate('/Homescreen', { state: { username, isDarkMode } });
-        }, 1000);
-      } else if (response.status === 404) {
-        resultElement.textContent = "User not found.";
-      } else if (response.status === 401) {
-        resultElement.textContent = "Invalid password.";
-      }
-      else {
-        resultElement.textContent = "An error occurred. Please try again.";
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      resultElement.textContent = "Failed to connect to the server.";
+    const response = await fetch(`https://chat-host-mern.onrender.com/tologin`, {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+
+    if (response.status === 200) {
+      resultElement.textContent = "Login successful.";
+      setTimeout(() => {
+        navigate('/Homescreen', { state: { username, isDarkMode } });
+      }, 1000);
+    } else if (response.status === 404) {
+      resultElement.textContent = "User not found.";
+    } else if (response.status === 401) {
+      resultElement.textContent = "Invalid password.";
     }
+    else {
+      resultElement.textContent = "An error occurred. Please try again.";
+    }
+
+
   };
 
-  
+
   const switchMode = () => {
 
 
@@ -122,7 +120,7 @@ function Login({ isDarkMode, setDarkMode }) {
               <br />
               <button className={`${!isDarkMode ? "bg-blue-500" : "bg-gray-500"} rounded-xl hover:scale-105 mt-[2vh] tablet:w-[45vw] ml-[2vw] w-[20vw] h-[7vh]`} id="submit_id" onClick={(e) => callSubmit(e)}>Log In</button>
               <p className='mt-[2vh] mx-auto  flex justify-center text-[2vh]'>Don't have an account?<Link to="/SignUp" className='underline'>Register Here</Link></p>
-              <p id='result' className={`${isDarkMode?"text-white":"text-red-700"} mt-[2vh] mx-auto flex justify-center max-tablet:ml-[5vw]  text-[2.3vh] text-white`}></p>
+              <p id='result' className={`${isDarkMode ? "text-white" : "text-red-700"} mt-[2vh] mx-auto flex justify-center max-tablet:ml-[5vw]  text-[2.3vh] text-white`}></p>
             </form>
           </div>
 
