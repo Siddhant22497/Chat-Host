@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const user_info = require('./user_info.js');
 const groupmessage = require('./groupmessage.js');
-const { decrypt } = require('./cryptography'); // Import decrypt function
+const { decrypt } = require('./cryptography.js'); // Import decrypt function
 
 router.post('/tofetch', async (req, resp) => {
     const name = req.body.username;

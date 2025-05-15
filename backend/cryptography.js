@@ -1,6 +1,6 @@
-import crypto from 'crypto';
+const crypto = require('crypto');
 
-const key = process.env.SECRET_KEY || 'your-secret-key-32-bytes-long'; // Ensure the key is 32 bytes for AES-256
+const key = process.env.SECRET_KEY
 const algorithm = 'aes-256-cbc';
 const ivLength = 16; 
 
@@ -22,4 +22,4 @@ const decrypt = (text) => {
     return decrypted;
 };
 
-export { encrypt, decrypt };
+module.exports = { encrypt, decrypt };

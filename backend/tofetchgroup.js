@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const groupchat = require("./groupchat");
 const groupmessage = require("./groupmessage");
-const { encrypt, decrypt } = require("./cryptography"); // Import encrypt and decrypt functions
+const { encrypt, decrypt } = require("./cryptography.js"); // Import encrypt and decrypt functions
 
 // Check if group exists
 router.post("/checkgroupexist", async (req, resp) => {

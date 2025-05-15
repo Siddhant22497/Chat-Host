@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const individualmessage = require("./individualmessage");
-const { encrypt, decrypt } = require("./cryptography"); // Import encrypt and decrypt functions
+const { encrypt, decrypt } = require("./cryptography.js"); 
 
 // Route to fetch individual chat messages
 router.post("/tofetchindichat", async (req, resp) => {

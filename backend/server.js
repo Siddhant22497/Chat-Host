@@ -7,6 +7,8 @@ const cors = require("cors");
 const path = require('path');
 const dotenv = require('dotenv')
 
+dotenv.config({ path: path.join(__dirname, '/.env') })
+
 
 
 
@@ -37,7 +39,15 @@ const PORT = process.env.PORT;
 
 const app = express();
 
-app.use(cors());
+
+
+app.use(cors({
+    origin: "https://chat-host-mern.onrender.com", // Allow requests from this origin
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    credentials: true, // Allow cookies and credentials
+}));
+
+
 app.use(express.json());
 
 app.use('/tologin', tologin);
