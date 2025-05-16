@@ -263,7 +263,7 @@ export default function Homescreen({ isDarkMode, setDarkMode }) {
     };
 
 
-  });
+  },[]);
 
   useEffect(() => {
 

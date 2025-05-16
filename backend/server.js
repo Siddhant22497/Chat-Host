@@ -7,6 +7,8 @@ const cors = require("cors");
 const path = require('path');
 const dotenv = require('dotenv')
 
+
+__dirname = path.resolve();
 dotenv.config({ path: path.join(__dirname, '/.env') })
 
 
@@ -40,11 +42,10 @@ const PORT = process.env.PORT;
 const app = express();
 
 
-
 app.use(cors({
-    origin: "https://chat-host-mern.onrender.com", // Allow requests from this origin
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-    credentials: true, // Allow cookies and credentials
+    origin: "https://chat-host-mern.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }));
 
 
